@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   application:
-    name: notificacion
+    name: e-notificacion
   jpa:
     database: POSTGRESQL
     show-sql: true

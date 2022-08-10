@@ -8,7 +8,7 @@ import pe.com.nttdata.empleado.service.IEmpleadoService;
 import pe.com.nttdata.empleadofeign.validar.empleado.EmpleadoCheckClient;
 import pe.com.nttdata.empleadofeign.validar.empleado.EmpleadoCheckResponse;
 import pe.com.nttdata.empleadoqueues.rabbitmq.RabbitMQMessageProducer;
-import pe.com.nttdata.notificacion.controller.NotificacionRequest;
+import pe.com.nttdata.empleadofeign.notificacion.NotificacionRequest;
 
 import java.time.LocalDate;
 import java.util.List;
