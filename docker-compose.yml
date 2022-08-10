@@ -42,29 +42,29 @@ services:
       - "15672:15672" #puerto a nivel admin
     networks:
       - spring
-  e-eureka-server:
-    image: ffernacu/e-eureka-server:latest
-    container_name: eureka-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILE_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-  e-apigateway:
-    image: ffernacu/e-apigateway:latest
-    container_name: apigateway
-    ports:
-      - "8083:8083"
-    environment:
-      - SPRING_PROFILE_ACTIVE=docker
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - e-eureka-server
+#  e-eureka-server:
+#    image: ffernacu/e-eureka-server:latest
+#    container_name: eureka-server
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILE_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#  e-apigateway:
+#    image: ffernacu/e-apigateway:latest
+#    container_name: apigateway
+#    ports:
+#      - "8083:8083"
+#    environment:
+#      - SPRING_PROFILE_ACTIVE=docker
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - e-eureka-server
   empleado:
     image: ffernacu/empleado:latest
     container_name: empleado
