@@ -6,6 +6,6 @@ spec:
   selector:
     app: empleado
   ports:
-    - port: 80
+    - port: 8090
       targetPort: 8080
   type: LoadBalancer
