@@ -79,7 +79,7 @@ services:
       - zipkin
       - postgres
       - rabbitmq
-      - config-server
+      - e-config-server
 #     - e-eureka-server
   validarempleado:
     image: ffernacu/validarempleado:latest
@@ -94,7 +94,7 @@ services:
     depends_on:
       - zipkin
       - postgres
-      - config-server
+      - e-config-server
 #     - e-eureka-server
   e-notificacion:
     image: ffernacu/e-notificacion:latest
@@ -110,11 +110,11 @@ services:
       - zipkin
       - postgres
       - rabbitmq
-      - config-server
+      - e-config-server
 #     - e-eureka-server
   e-config-server:
     image: ffernacu/e-config-server:latest
-    container_name: e-config-server
+    container_name: config-server
     ports:
       - "8090:8090"
     environment:

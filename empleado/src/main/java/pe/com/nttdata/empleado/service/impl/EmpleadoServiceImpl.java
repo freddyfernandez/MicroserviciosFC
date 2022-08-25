@@ -28,9 +28,6 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
         Empleado empleadoResponse =empleadoDao.save(empleado);
         return empleadoResponse;
     }
-    public List<Empleado> listarEmpleadoPorFechaingreso(LocalDate fechaIngreso) {
-        return empleadoDao.findByFechaIngreso(fechaIngreso);
-    }
     @CircuitBreaker(name = "validarempleadoCB", fallbackMethod = "fallValidarempleadoCB")
     @Retry(name = "validarempleadoRetry")
     public String validarEmpleado(Empleado empleado) {
@@ -41,7 +38,7 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
             throw new IllegalStateException("Empleado tiene de contacto!!");
         }
         //validar planilla
-        PlanillaCheckResponse planillaCheckResponse = empleadoCheckClient.validarPLanilla(empleado.getId(),
+        PlanillaCheckResponse planillaCheckResponse = empleadoCheckClient.validarPlanilla(empleado.getId(),
                 empleado.getCargo(),empleado.getHijos());
 
         return "OK";
@@ -64,5 +61,8 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
                 "internal.exchange",
                 "internal.notification.routing-key"
         );
+    }
+    public List<Empleado> listarEmpleadoPorFechaingreso(LocalDate fechaIngreso) {
+        return empleadoDao.findByFechaIngreso(fechaIngreso);
     }
 }
