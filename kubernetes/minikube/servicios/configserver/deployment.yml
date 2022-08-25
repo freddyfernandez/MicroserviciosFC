@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: christophermen/config-server:latest
+          image: ffernacu/e-config-server:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8090

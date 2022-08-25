@@ -114,7 +114,7 @@ services:
 #     - e-eureka-server
   e-config-server:
     image: ffernacu/e-config-server:latest
-    container_name: config-server
+    container_name: e-config-server
     ports:
       - "8090:8090"
     environment:

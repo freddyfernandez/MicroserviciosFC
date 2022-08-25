@@ -34,7 +34,7 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
     @CircuitBreaker(name = "validarempleadoCB", fallbackMethod = "fallValidarempleadoCB")
     @Retry(name = "validarempleadoRetry")
     public String validarEmpleado(Empleado empleado) {
-        log.info("Estoy en metodo validarCliente");
+        log.info("Estoy en metodo validarEmpleado");
         //validar empleado
         EmpleadoCheckResponse empleadoCheckResponse = empleadoCheckClient.validarEmpleado(empleado.getId());
         if (empleadoCheckResponse.esEstafador()) {
