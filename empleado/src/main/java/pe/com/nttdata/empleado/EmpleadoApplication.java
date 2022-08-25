@@ -14,7 +14,7 @@ import org.springframework.context.annotation.PropertySources;
 @EnableFeignClients(
         basePackages = "pe.com.nttdata.empleadofeign" //para comunicar con el modulo y paquete
 )
-//agregado para comunicar servicios en un entorno externo
+//agregado para comunicar servicios en un entorno externo para kubernettes
 @PropertySources({
         @PropertySource("classpath:empleadofeign-${spring.profiles.active}.properties")//para comunicar con el archivo properties de modulo tipo libreria
 })

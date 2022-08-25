@@ -6,6 +6,6 @@ spec:
   selector:
     app: validarempleado
   ports:
-    - port: 8090
+    - port: 8089
       targetPort: 8081
   type: NodePort

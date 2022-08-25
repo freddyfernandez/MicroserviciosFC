@@ -23,14 +23,22 @@ public class EmpleadoController {
     public ResponseEntity<?>registrarEmpleado(@Valid @RequestBody Empleado empleado){
         log.info("nuevo registro de empleado {} ", empleado);
         Empleado newEmpleado =empleadoService.registrarEmpleado(empleado);
-        return new ResponseEntity<EmpleadoRequest>(new EmpleadoRequest(newEmpleado.getId(),
-                empleado.getTipoDocumento(),
-                empleado.getNroDocumento(),
-                empleado.getNombres(),
-                empleado.getApellidos(),
-                empleado.getCargo(),
-                empleado.getTelefono(),
-                empleado.getFechaIngreso()),HttpStatus.OK);
+        String resultado = empleadoService.validarEmpleado(newEmpleado);
+        log.info("Resultado: {}", resultado);
+        if (resultado.equals("OK")){
+            empleadoService.registrarNotificacion(newEmpleado);
+            return new ResponseEntity<EmpleadoRequest>(new EmpleadoRequest(newEmpleado.getId(),
+                    empleado.getTipoDocumento(),
+                    empleado.getNroDocumento(),
+                    empleado.getNombres(),
+                    empleado.getApellidos(),
+                    empleado.getCargo(),
+                    empleado.getTelefono(),
+                    empleado.getHijos(),
+                    empleado.getFechaIngreso()),HttpStatus.OK);
+        }
+        return new ResponseEntity("Servicio validarEmpleado no disponible", HttpStatus.OK);
+
     }
 
     @GetMapping(params ="fechaIngreso")

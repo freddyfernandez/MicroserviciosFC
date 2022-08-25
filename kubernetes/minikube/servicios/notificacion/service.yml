@@ -6,6 +6,6 @@ spec:
   selector:
     app: notificacion
   ports:
-    - port: 8090
+    - port: 8089
       targetPort: 8082
   type: NodePort

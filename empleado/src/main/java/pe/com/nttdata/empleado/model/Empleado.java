@@ -59,6 +59,9 @@ public class Empleado {
     @Column(name = "empleado_telefono")
     private String telefono;
 
+    @Column(name = "empleado_hijos")
+    private Integer hijos;
+
     @ManyToOne
     @JoinColumn(name = "nacionalidad_id", nullable = false)
     @NotNull(message = "{NotNull.empleado.nacionalidad}")

@@ -68,10 +68,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        <!--ADD for modules-->
         <dependency>
             <artifactId>empleadofeign</artifactId>
             <groupId>pe.com.nttdata</groupId>
@@ -83,6 +80,24 @@
             <groupId>pe.com.nttdata</groupId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <!--ADD for properties-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <!--ADD for events breakers-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
     </dependencies>
 

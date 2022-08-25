@@ -77,9 +77,10 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - e-eureka-server
       - postgres
       - rabbitmq
+      - config-server
+#     - e-eureka-server
   validarempleado:
     image: ffernacu/validarempleado:latest
     container_name: validarempleado
@@ -92,9 +93,9 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - e-eureka-server
       - postgres
-      - rabbitmq
+      - config-server
+#     - e-eureka-server
   e-notificacion:
     image: ffernacu/e-notificacion:latest
     container_name: notificacion
@@ -107,10 +108,19 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - e-eureka-server
       - postgres
       - rabbitmq
-  
+      - config-server
+#     - e-eureka-server
+  e-config-server:
+    image: ffernacu/e-config-server:latest
+    container_name: config-server
+    ports:
+      - "8090:8090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
 networks:
   postgres:
     driver: bridge
