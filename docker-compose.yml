@@ -121,7 +121,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - spring
-  e-autenticacion:
+  autenticacion:
     image: ffernacu/autenticacion:latest
     container_name: autenticacion
     ports:

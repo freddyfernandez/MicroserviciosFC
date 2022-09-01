@@ -1,9 +1,8 @@
 server:
   port: 8083
-
 spring:
   application:
-    name: e-api-gateway
+    name: apigateway
   cloud:
     gateway:
       routes:
