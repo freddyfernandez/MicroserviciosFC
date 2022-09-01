@@ -5,6 +5,7 @@ metadata:
   labels:
     app: validarempleado
 spec:
+  #replicas del pod
   replicas: 1
   template:
     metadata:

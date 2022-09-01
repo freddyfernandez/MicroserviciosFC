@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8084
 spring:
   datasource:
     password: 1234
-    url: jdbc:postgresql://localhost:5431/empleadocheck
+    url: jdbc:postgresql://localhost:5431/autenticacion
     username: nttdata
   jpa:
     database : POSTGRESQL
@@ -25,3 +25,17 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 #    enabled: false
+
+jwt:
+  secret: secret
+
+admin-paths:
+  paths:
+    - uri: "/api/v1/empleado"
+      method: "POST"
+    - uri: "/api/v1/empleado"
+      method: "PUT"
+    - uri: "/api/v1/empleado/{1}[1-9]+[0-9]*" #es un pathvariable
+      method: "DELETE"
+    - uri: "/api/v1/empleado-check/{1}[1-9]+[0-9]*"
+      method: "GET"

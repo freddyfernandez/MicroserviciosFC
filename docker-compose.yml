@@ -121,6 +121,22 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - spring
+  e-autenticacion:
+    image: ffernacu/autenticacion:latest
+    container_name: autenticacion
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - postgres
+      - config-server
+      - eureka-server
+      - apigateway
 networks:
   postgres:
     driver: bridge
