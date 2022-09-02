@@ -53,6 +53,7 @@ services:
       - spring
     depends_on:
       - zipkin
+      - config-server
   apigateway:
     image: ffernacu/e-apigateway:latest
     container_name: apigateway
@@ -62,8 +63,9 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - spring
-    depends_on:
+    depends_on: #ejecucion secuencial luego de levantar estos servicios recien levanta el mismo
       - zipkin
+      - config-server
       - eureka-server
   empleado:
     image: ffernacu/empleado:latest
@@ -95,9 +97,9 @@ services:
     depends_on:
       - zipkin
       - postgres
-      - apigateway
       - config-server
       - eureka-server
+      - apigateway
   notificacion:
     image: ffernacu/e-notificacion:latest
     container_name: notificacion
