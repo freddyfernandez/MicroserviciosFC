@@ -42,29 +42,29 @@ services:
       - "15672:15672" #puerto a nivel admin
     networks:
       - spring
-#  e-eureka-server:
-#    image: ffernacu/e-eureka-server:latest
-#    container_name: eureka-server
-#    ports:
-#      - "8761:8761"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#    depends_on:
-#      - zipkin
-#  e-apigateway:
-#    image: ffernacu/e-apigateway:latest
-#    container_name: apigateway
-#    ports:
-#      - "8083:8083"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    networks:
-#      - spring
-#    depends_on:
-#      - zipkin
-#      - e-eureka-server
+  eureka-server:
+    image: ffernacu/e-eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+  apigateway:
+    image: ffernacu/e-apigateway:latest
+    container_name: apigateway
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - eureka-server
   empleado:
     image: ffernacu/empleado:latest
     container_name: empleado
@@ -79,8 +79,9 @@ services:
       - zipkin
       - postgres
       - rabbitmq
-      - e-config-server
-#     - e-eureka-server
+      - config-server
+      - eureka-server
+      - apigateway
   validarempleado:
     image: ffernacu/validarempleado:latest
     container_name: validarempleado
@@ -94,9 +95,10 @@ services:
     depends_on:
       - zipkin
       - postgres
-      - e-config-server
-#     - e-eureka-server
-  e-notificacion:
+      - apigateway
+      - config-server
+      - eureka-server
+  notificacion:
     image: ffernacu/e-notificacion:latest
     container_name: notificacion
     ports:
@@ -110,9 +112,9 @@ services:
       - zipkin
       - postgres
       - rabbitmq
-      - e-config-server
-#     - e-eureka-server
-  e-config-server:
+      - config-server
+      - eureka-server
+  config-server:
     image: ffernacu/e-config-server:latest
     container_name: config-server
     ports:

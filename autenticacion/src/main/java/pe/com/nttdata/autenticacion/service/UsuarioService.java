@@ -29,7 +29,7 @@ public class UsuarioService {
         Optional<Usuario> usuario = usuarioDao.findByUsuario(dto.getUsuario());
         if(usuario.isPresent())
             return null;
-        String password = passwordEncoder.encode(dto.getPassword());
+        String password = passwordEncoder.encode(dto.getPassword());//encriptacion de password
         Usuario usuarioSave = Usuario.builder()
                 .usuario(dto.getUsuario())
                 .password(password)

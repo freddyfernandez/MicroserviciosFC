@@ -27,14 +27,14 @@ public class JwtProvider {
     protected void init() {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
-
+    //Estructura del token: header(SignatureAlgorithm)+payload(object model)+signature(secret)
     public String createToken(Usuario usuario) {
         Map<String, Object> claims = new HashMap<>();
         claims = Jwts.claims().setSubject(usuario.getUsuario());
         claims.put("id", usuario.getId());
         claims.put("rol", usuario.getRol());
-        Date now = new Date();
-        Date exp = new Date(now.getTime() + 3600000);
+        Date now = new Date();//inicializar el token
+        Date exp = new Date(now.getTime() + 3600000);//expira en 1 hora
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -49,9 +49,10 @@ public class JwtProvider {
         }catch (Exception e){
             return false;
         }
+        //si no es admin(true) y es un path declarado en admin-paths(true)
         if(!isAdmin(token) && routeValidator.isAdminPath(dto))
-            return false;
-        return true;
+            return false;//sin autorizacion
+        return true;//con autorizacion
     }
 
     public String getUserNameFromToken(String token){

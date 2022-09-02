@@ -1,6 +1,6 @@
 spring:
   application:
-    name: autenticacion
+    name: autenticacion #referencia a config-data
   config:
     import: "optional:configserver:"
   cloud:
