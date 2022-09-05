@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: autenticacion
+  name: eureka-server
   labels:
-    app: autenticacion
+    app: eureka-server
 spec:
   replicas: 1
   template:
     metadata:
-      name: autenticacion
+      name: eureka-server
       labels:
-        app: autenticacion
+        app: eureka-server
     spec:
       containers:
-        - name: autenticacion
-          image: ffernacu/autenticacion:latest
+        - name: eureka-server
+          image: ffernacu/e-eureka-server:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8084
+            - containerPort: 8761
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: kube
       restartPolicy: Always
   selector:
     matchLabels:
-      app: autenticacion
+      app: eureka-server

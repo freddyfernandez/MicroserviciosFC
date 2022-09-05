@@ -1,5 +1,6 @@
 package pe.com.nttdata.apigateway.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import pe.com.nttdata.apigateway.dto.TokenDto;
 import reactor.core.publisher.Mono;
 
 @Component
+@Slf4j
 public class AutorizacionFilter extends AbstractGatewayFilterFactory<AutorizacionFilter.Config> {
 
     private WebClient.Builder webClient;
@@ -24,6 +26,7 @@ public class AutorizacionFilter extends AbstractGatewayFilterFactory<Autorizacio
     //programacion reactiva
     @Override
     public GatewayFilter apply(Config config) {
+        log.info("log:Inicio:AutorizacionFilter");
         return (((exchange, chain) -> {
             if(!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
                 return onError(exchange, HttpStatus.BAD_REQUEST);
@@ -31,6 +34,7 @@ public class AutorizacionFilter extends AbstractGatewayFilterFactory<Autorizacio
             String [] chunks = tokenHeader.split(" ");
             if(chunks.length != 2 || !chunks[0].equals("Bearer"))
                 return onError(exchange, HttpStatus.BAD_REQUEST);
+            log.info("log:Fin:AutorizacionFilter");
             return webClient.build()
                     .post()
                     .uri("http://autenticacion/api/v1/autenticacion/validar?token=" + chunks[1])

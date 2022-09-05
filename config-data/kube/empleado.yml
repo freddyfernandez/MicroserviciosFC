@@ -30,7 +30,9 @@ eureka:
       defaultZone: http://eureka-server:8761/eureka
     fetch-registry: true
     register-with-eureka: true
-    enabled: false
+#   enabled: false
+  instance:
+    prefer-ip-address: true
 
 resilience4j:
   circuitbreaker:

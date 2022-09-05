@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apigateway
+  name: autenticacion
   labels:
-    app: apigateway
+    app: autenticacion
 spec:
   replicas: 1
   template:
     metadata:
-      name: apigateway
+      name: autenticacion
       labels:
-        app: apigateway
+        app: autenticacion
     spec:
       containers:
-        - name: empleado
-          image: ffernacu/e-apigateway:latest
+        - name: autenticacion
+          image: ffernacu/autenticacion:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8083
+            - containerPort: 8084
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: kube
       restartPolicy: Always
   selector:
     matchLabels:
-      app: apigateway
+      app: autenticacion
